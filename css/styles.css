@@ -4,3 +4,24 @@ body {
 h1 {
   text-align: center;
 }
+
+.square{
+    width:100px;
+    height:100px;
+
+}
+
+#board{
+  margin-left: 450px;
+  margin-top: 50px;
+}
+
+.vert{
+    border-left:2px solid #000;
+    border-right:2px solid #000;
+}
+
+.horiz{
+    border-top:2px solid #000;
+    border-bottom:2px solid #000;
+}

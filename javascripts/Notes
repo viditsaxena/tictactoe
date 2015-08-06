@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title></title>
+ </head>
+ <body>
+   <div class="square" col='1' row='1' >
+
+   </div>
+
+
+   <script type="text/javascript">
+     $('square').on('click', function(e) {
+       var cell = $(e.target);
+
+       var position = cell.attr('id');
+
+       var position = {
+         col: cell.attr('col'),
+         row: cell.attr('row')
+       }
+
+       /*
+
+       {
+         col: 1,
+         row: 1
+       }
+
+       */
+
+       makemove( position );
+
+       // behavior
+     });
+   </script>
+ </body>
+</html>
+
+------------------------------------------------------------------------------------

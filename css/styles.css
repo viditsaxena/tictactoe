@@ -11,17 +11,22 @@ h1 {
 
 }
 
+td {
+  text-align: center;
+  font-size: 20px;
+}
+
 #board{
   margin-left: 450px;
   margin-top: 50px;
 }
 
 .vert{
-    border-left:2px solid #000;
-    border-right:2px solid #000;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
 }
 
 .horiz{
-    border-top:2px solid #000;
-    border-bottom:2px solid #000;
+    border-top:2px solid #fff;
+    border-bottom:2px solid #fff;
 }

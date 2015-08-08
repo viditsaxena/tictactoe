@@ -17,6 +17,7 @@ TicTacToeGame.prototype.checkWinner = function checkWinner(){
   TicTacToeGame.prototype.winningRows();
   TicTacToeGame.prototype.winningCols();
   TicTacToeGame.prototype.winningDiagonals();
+  TicTacToeGame.prototype.checkTie();
 
 };
 
@@ -50,14 +51,21 @@ for (var i = 0; i < 3; i++) {
 TicTacToeGame.prototype.winningDiagonals = function winningDiagonals(){
 
     if ((board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
-         (board[2][0] === 'X' && board[1][1] === 'X' && board[0][3] === 'X')){
+         (board[2][0] === 'X' && board[1][1] === 'X' && board[0][2] === 'X')){
   alert("Player 1 is the winner");
 } else if ((board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
-           (board[2][0] === 'O' && board[1][1] === 'O' && board[0][3] === 'O')){
+           (board[2][0] === 'O' && board[1][1] === 'O' && board[0][2] === 'O')){
     alert("Player 2 is the winner");
-  }
+  } 
 
 };
+
+TicTacToeGame.prototype.checkTie = function checkTie(){
+  if(moveNumber === 10){
+    alert("It's a tie!")
+  }
+}
+
 
 
 
@@ -101,7 +109,6 @@ $('.cell').on('click', function(e) {
   var col = filledCell.data('col');
   board[row][col] = turn;
 
-
 })
 };
 
@@ -131,17 +138,16 @@ TicTacToeGame.prototype.bindClickLetter = function bindClickLetter(){
   //do something
   $('.playrow').on('click','.cell', function(){
     if(moveNumber % 2 === 0){
-    var playerClick = $('<h3>').text(player2);
+    var playerClick = $(this).addClass('blue');
     turn = player1;
   } else {
-    var playerClick = $('<h3>').text(player1);
+    var playerClick = $(this).addClass('green');
     turn = player2;
   }
   $(this).append(playerClick).addClass('cellfilled');
   moveNumber = moveNumber + 1;
   TicTacToeGame.prototype.checkWinner();
   });
-
 };
 
 // TODO: Generates a letter when the user clicks on the board

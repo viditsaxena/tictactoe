@@ -86,7 +86,7 @@ FeedKittenGame.prototype.start = function start(){
   this.kittensRise();
 };
 
-
+$('')
 // -------------------------------------
 
 // Start the game

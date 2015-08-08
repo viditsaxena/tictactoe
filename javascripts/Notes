@@ -20,6 +20,11 @@
          col: cell.attr('col'),
          row: cell.attr('row')
        }
+       function checkCell(cell) {
+   	var row = $(cell).data("row");
+   	var col = $(cell).data("col");
+   	return(board[row][col]);
+   }
 
        /*
 
@@ -39,3 +44,25 @@
 </html>
 
 ------------------------------------------------------------------------------------
+
+
+<div id="board">
+<table>
+  <tr id="row">
+    <td class="square" data-col="0" data-row="0">X</td>
+    <td class="square" data-col="1" data-row="0">X</td>
+    <td class="square" data-col="2" data-row="0">X</td>
+  </tr>
+  <tr id="row">
+    <td class="square" data-col="0" data-row="1">O</td>
+    <td class="square" data-col="1" data-row="1">O</td>
+    <td class="square" data-col="2" data-row="1">O</td>
+  </tr>
+  <tr id="row">
+    <td class="square" data-col="0" data-row="2">X</td>
+    <td class="square" data-col="1" data-row="2">X</td>
+    <td class="square" data-col="2" data-row="2">X</td>
+  </tr>
+</table>
+
+</div>

@@ -12,10 +12,53 @@ var player2 = 'O';
 var turn = player1;
 var moveNumber = 1;
 
+TicTacToeGame.prototype.checkWinner = function checkWinner(){
 
-TicTacToeGame.prototype.winningCombos = function winningCombos(){
-  if ()
+  TicTacToeGame.prototype.winningRows();
+  TicTacToeGame.prototype.winningCols();
+  TicTacToeGame.prototype.winningDiagonals();
+
+};
+
+
+TicTacToeGame.prototype.winningRows = function winningRows(){
+
+for (var i = 0; i < 3; i++) {
+    if (board[i][0] === 'X' && board[i][1] === 'X' && board[i][2] === 'X'){
+  alert("Player 1 is the winner");
+  } else if (board[i][0] === 'O' && board[i][1] === 'O' && board[i][2] === 'O'){
+    alert("Player 2 is the winner");
+  }
 }
+
+};
+
+TicTacToeGame.prototype.winningCols = function winningCols(){
+
+for (var i = 0; i < 3; i++) {
+    if (board[0][i] === 'X' && board[1][i] === 'X' && board[2][i] === 'X'){
+  alert("Player 1 is the winner");
+} else if (board[0][i] === 'O' && board[1][i] === 'O' && board[2][i] === 'O'){
+    alert("Player 2 is the winner");
+  }
+}
+
+};
+
+
+
+TicTacToeGame.prototype.winningDiagonals = function winningDiagonals(){
+
+    if ((board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
+         (board[2][0] === 'X' && board[1][1] === 'X' && board[0][3] === 'X')){
+  alert("Player 1 is the winner");
+} else if ((board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
+           (board[2][0] === 'O' && board[1][1] === 'O' && board[0][3] === 'O')){
+    alert("Player 2 is the winner");
+  }
+
+};
+
 
 
 TicTacToeGame.prototype.generateBoxNode = function generateBoxNode(){
@@ -58,6 +101,7 @@ $('.cell').on('click', function(e) {
   var col = filledCell.data('col');
   board[row][col] = turn;
 
+
 })
 };
 
@@ -95,7 +139,9 @@ TicTacToeGame.prototype.bindClickLetter = function bindClickLetter(){
   }
   $(this).append(playerClick).addClass('cellfilled');
   moveNumber = moveNumber + 1;
+  TicTacToeGame.prototype.checkWinner();
   });
+
 };
 
 // TODO: Generates a letter when the user clicks on the board

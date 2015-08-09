@@ -1,5 +1,5 @@
 
-// ________
+
 body {
   width: 100%;
   background-image:url(''../Images/background.jpg'');
@@ -13,7 +13,7 @@ body {
 .heading {
   text-align: center;
   font-family: 'Crafty Girls', cursive;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 table {
@@ -29,9 +29,7 @@ table {
   box-shadow: 2px 2px 0px #888888
 }
 
-h3 {
-  text-align: center;
-}
+
 
 .hover {
   background-color: #aaa;
@@ -43,4 +41,26 @@ h3 {
 
 .green {
   background-color: #25ce8e;
+}
+
+#player1 {
+  color: #25ce8e;
+  font-family: 'Crafty Girls', cursive;
+  text-align: left;
+  font-size: 20px;
+  margin-left: 20px;
+
+}
+
+#player2 {
+  color: #578dd6;
+  font-family: 'Crafty Girls', cursive;
+  text-align: right;
+  font-size: 20px;
+  margin-right: 20px;
+  padding-left: 20px;
+}
+
+.players{
+  display: block;
 }

@@ -11,6 +11,7 @@ var player1 = 'X';
 var player2 = 'O';
 var turn = player1;
 var moveNumber = 1;
+var winner = false;
 
 TicTacToeGame.prototype.checkWinner = function checkWinner(){
 
@@ -26,9 +27,11 @@ TicTacToeGame.prototype.winningRows = function winningRows(){
 
 for (var i = 0; i < 3; i++) {
     if (board[i][0] === 'X' && board[i][1] === 'X' && board[i][2] === 'X'){
-  alert("Player 1 is the winner");
+       winner = true;
+  this.endGame("Player 1 is the winner");
   } else if (board[i][0] === 'O' && board[i][1] === 'O' && board[i][2] === 'O'){
-    alert("Player 2 is the winner");
+     winner = true;
+    this.endGame("Player 2 is the winner");
   }
 }
 
@@ -38,9 +41,11 @@ TicTacToeGame.prototype.winningCols = function winningCols(){
 
 for (var i = 0; i < 3; i++) {
     if (board[0][i] === 'X' && board[1][i] === 'X' && board[2][i] === 'X'){
-  alert("Player 1 is the winner");
+       winner = true;
+  this.endGame("Player 1 is the winner");
 } else if (board[0][i] === 'O' && board[1][i] === 'O' && board[2][i] === 'O'){
-    alert("Player 2 is the winner");
+   winner = true;
+  this.endGame("Player 2 is the winner");
   }
 }
 
@@ -52,21 +57,37 @@ TicTacToeGame.prototype.winningDiagonals = function winningDiagonals(){
 
     if ((board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') ||
          (board[2][0] === 'X' && board[1][1] === 'X' && board[0][2] === 'X')){
-  alert("Player 1 is the winner");
+           winner = true;
+  this.endGame("Player 1 is the winner");
 } else if ((board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') ||
            (board[2][0] === 'O' && board[1][1] === 'O' && board[0][2] === 'O')){
-    alert("Player 2 is the winner");
-  } 
+              winner = true;
+    this.endGame("Player 2 is the winner");
+  }
 
 };
 
 TicTacToeGame.prototype.checkTie = function checkTie(){
-  if(moveNumber === 10){
-    alert("It's a tie!")
+var filledCells = [];
+for (var i = 0; i < 3; i++) {
+  for (var j = 0; j < 3; j++) {
+    if (board[i][j] === 'X' || board[i][j] === 'O'){
+      filledCells.push(board[i][j]);
+    }
   }
 }
+  if(filledCells.length === 9 && winner === false){
+    this.endGame("It's a tie!")
+  }
+};
 
 
+// End the game, and refresh the page
+TicTacToeGame.prototype.endGame = function endGame(message) {
+
+  	alert(message);
+  	location.reload();
+}
 
 
 TicTacToeGame.prototype.generateBoxNode = function generateBoxNode(){
@@ -74,34 +95,11 @@ TicTacToeGame.prototype.generateBoxNode = function generateBoxNode(){
   return boxNode;
 }
 // TODO: Generate Box node
-//
-// var col = $('.square').data('col');
-// var row = $('.square').data('row');
 
 
 TicTacToeGame.prototype.storeCell = function storeCell(){
 
-/*for (var i = 0; i < 3; i++){
-  $('.cellfilled').data('col')
-}
-if(filledCells.length) {
-  var row = $('.cellfilled').data("row");
-  var col = $('.cell').data("col");
-  board[row][col] = 0;
 
-} else {
-var row = $('.cellfilled').data("row");
-var col = $('.cellfilled').data("col");
-board[row][col] = turn;
-}
-};
-
-  var position = {
-    col: cell.attr('col'),
-    row: cell.attr('row')
-  }
-
-*/
 $('.cell').on('click', function(e) {
   var filledCell = $(e.target);
 
@@ -153,14 +151,17 @@ TicTacToeGame.prototype.bindClickLetter = function bindClickLetter(){
 // TODO: Generates a letter when the user clicks on the board
 
 TicTacToeGame.prototype.readyToStart = function readyToStart(){
-alert("Lets start the game");
+this.player1Name = prompt("Player 1 - Please input your name.")
+$('#player1').text("Player 1 is " + this.player1Name);
+this.player2Name = prompt("Player 2 - Please input your name.")
+$('#player2').text("Player 2 is " + this.player2Name);
 };
 
 // --------------------------
 // TicTacToeGame    public interface....
-function TicTacToeGame(options){
-  this.playerX = options.name1;
-  this.playerO = options.name2;
+function TicTacToeGame(){
+  this.player1Name;
+  this.player2Name;
   this.moveNumber = 1;
 }
 
@@ -181,7 +182,7 @@ TicTacToeGame.prototype.start = function start(){
 var game;
 
 $(document).ready(function(){
-  game = new TicTacToeGame("Messi","Ronaldo");
+  game = new TicTacToeGame();
 
   game.init( $('#board'));
   game.start();
